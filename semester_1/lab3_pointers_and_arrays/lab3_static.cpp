@@ -9,6 +9,19 @@ void tryRead(int& a){
         exit(-1);
     }
 }
+void arrCin(int *arr, int n){
+    std::cout << "Введите массив:\n";
+    for(int i = 0; i < n; i++) tryRead(arr[i]);
+}
+void arrGen(int *arr, int n){
+    std::mt19937 gen(45218965);
+    int x, y;
+    std::cout << "Какие хотите ограничения у значений?\n";
+    tryRead(x);
+    tryRead(y);
+    std::uniform_int_distribution<int> dist(x, y);
+    for(int i = 0; i < n; i++) arr[i] = dist(gen);
+}
 void arrCout(int* arr, int n){
     for(int i = 0; i < n; i++){
         std::cout << arr[i] << ' ';
@@ -44,18 +57,11 @@ int main()
     int check, arr[MAX];
     tryRead(check);
     if(check){
-        std::mt19937 gen(45218965);
-        int x, y;
-        std::cout << "Какие хотите ограничения у значений?\n";
-        tryRead(x);
-        tryRead(y);
-        std::uniform_int_distribution<int> dist(x, y);
-        for(int i = 0; i < n; i++) arr[i] = dist(gen);
+        arrGen(arr, n);
         std::cout << "Принято! Вот наш массив:\n";
         arrCout(arr, n);
     } else{
-        std::cout << "Введите массив:\n";
-        for(int i = 0; i < n; i++) tryRead(arr[i]);
+        arrCin(arr, n);
     }
     solve(arr, n);
 
