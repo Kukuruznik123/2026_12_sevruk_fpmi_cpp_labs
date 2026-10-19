@@ -51,6 +51,7 @@ void solve(int **a, int n){
         }
         std::cout << "   " << ans[0] << std::endl << ans[1] << "     " << ans[2] << std::endl << "   " << ans[3];
     }
+    delete[] ans;
 }
 
 int main()
