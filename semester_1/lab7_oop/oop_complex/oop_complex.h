@@ -3,9 +3,6 @@
 
 #pragma once
 
-#include <cmath>
-#include <iostream>
-
 class Complex{
 private:
     double a, b;
@@ -15,58 +12,43 @@ public:
     Complex(double re, double im) : a(re), b(im) {}
     Complex(const Complex& newVal) : a(newVal.a), b(newVal.b) {}
 
-    Complex& operator = (const Complex& newVal){
-        if(this != &newVal){
-            a = newVal.a;
-            b = newVal.b;
-        }
-        return *this;
-    }
-    bool operator == (const Complex& val){return (a == val.a) && (b == val.b);}
-    bool operator != (const Complex& val){return !(*this == val);}
+    Complex& operator = (const Complex&);
+    bool operator == (const Complex&);
+    bool operator != (const Complex&);
 
-    Complex& operator + (){return *this;}
-    Complex operator + (const Complex& val) const {return Complex(a + val.a, b + val. b);}
-    Complex operator + (double val) const {return Complex(a + val, b);}
+    Complex& operator + ();
+    Complex operator + (const Complex&) const;
+    Complex operator + (double) const;
     friend Complex operator + (double, const Complex&);
-    Complex operator += (const Complex& val){*this = *this + val; return *this;}
-    Complex operator += (double val){*this = *this + val; return *this;}
+    Complex operator += (const Complex&);
+    Complex operator += (double);
 
-    Complex operator - (){return Complex(-a, -b);}
-    Complex operator - (const Complex& val) const {return Complex(a - val.a, b - val.b);}
-    Complex operator - (double val) const {return Complex(a - val, b);}
+    Complex operator - ();
+    Complex operator - (const Complex&) const;
+    Complex operator - (double) const;
     friend Complex operator - (double, const Complex&);
-    Complex operator -= (const Complex& val){*this = *this - val; return *this;}
-    Complex operator -= (double val){*this = *this - val; return *this;}
+    Complex operator -= (const Complex&);
+    Complex operator -= (double);
 
-    Complex operator * (const Complex& val) const{
-        return Complex(a * val.a - b * val.b,
-                       a * val.b + b * val.a);
-    }
-    Complex operator * (double val) const {return Complex(a * val, b * val);}
+    Complex operator * (const Complex&) const;
+    Complex operator * (double) const;
     friend Complex operator * (double, const Complex&);
-    Complex operator *= (const Complex& val){*this = *this * val; return *this;}
-    Complex operator *= (double val){*this = *this * val; return *this;}
+    Complex operator *= (const Complex&);
+    Complex operator *= (double);
 
-    Complex operator / (const Complex& val) const {
-        return Complex((a * val.a + b * val.b) / (val.a * val.a + val.b * val.b),
-                       (b * val.a - a * val.b) / (val.a * val.a + val.b * val.b));
-    }
-    Complex operator / (double val) const {return Complex(a / val, b / val);}
+    Complex operator / (const Complex&) const;
+    Complex operator / (double) const;
     friend Complex operator / (double, const Complex&);
-    Complex operator /= (const Complex& val){*this = *this / val; return *this;}
-    Complex operator /= (double val){*this = *this / val; return *this;}
+    Complex operator /= (const Complex&);
+    Complex operator /= (double val);
 
 
-    double Real() const {return a;}
-    double Imag() const {return b;}
-    double Abs() const {return std::sqrt(a * a + b * b);}
+    double Real() const;
+    double Imag() const;
+    double Abs() const;
 };
 
-Complex operator + (double a, const Complex& val){return val + a;}
-Complex operator - (double a, const Complex& val){return Complex(a - val.a, -val.b);}
-Complex operator * (double a, const Complex& val){return val * a;}
-Complex operator / (double a, const Complex& val){return Complex(a * val.a / (val.a * val.a + val.b * val.b),
-                                                                 -a * val.b / (val.a * val.a + val.b * val.b));}
+
 
 #endif
+
