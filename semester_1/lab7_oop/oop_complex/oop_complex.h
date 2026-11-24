@@ -29,13 +29,15 @@ public:
     Complex operator + (const Complex& val) const {return Complex(a + val.a, b + val. b);}
     Complex operator + (double val) const {return Complex(a + val, b);}
     friend Complex operator + (double, const Complex&);
-    Complex operator += (const auto& val){*this = *this + val; return *this;}
+    Complex operator += (const Complex& val){*this = *this + val; return *this;}
+    Complex operator += (double val){*this = *this + val; return *this;}
 
     Complex operator - (){return Complex(-a, -b);}
     Complex operator - (const Complex& val) const {return Complex(a - val.a, b - val.b);}
     Complex operator - (double val) const {return Complex(a - val, b);}
     friend Complex operator - (double, const Complex&);
-    Complex operator -= (const auto& val){*this = *this - val; return *this;}
+    Complex operator -= (const Complex& val){*this = *this - val; return *this;}
+    Complex operator -= (double val){*this = *this - val; return *this;}
 
     Complex operator * (const Complex& val) const{
         return Complex(a * val.a - b * val.b,
@@ -43,7 +45,8 @@ public:
     }
     Complex operator * (double val) const {return Complex(a * val, b * val);}
     friend Complex operator * (double, const Complex&);
-    Complex operator *= (const auto& val){*this = *this * val; return *this;}
+    Complex operator *= (const Complex& val){*this = *this * val; return *this;}
+    Complex operator *= (double val){*this = *this * val; return *this;}
 
     Complex operator / (const Complex& val) const {
         return Complex((a * val.a + b * val.b) / (val.a * val.a + val.b * val.b),
@@ -51,7 +54,8 @@ public:
     }
     Complex operator / (double val) const {return Complex(a / val, b / val);}
     friend Complex operator / (double, const Complex&);
-    Complex operator /= (const auto& val){*this = *this / val; return *this;}
+    Complex operator /= (const Complex& val){*this = *this / val; return *this;}
+    Complex operator /= (double val){*this = *this / val; return *this;}
 
 
     double Real() const {return a;}
